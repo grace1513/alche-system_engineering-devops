@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# Stop apache2 (gracefully, then forcefully if needed) and start nginx
-service apache2 stop
-pkill -9 apache2
+# Stop any service that might be blocking port 80, then ensure nginx starts and listens correctly
+service apache2 stop 2>/dev/null
+pkill -9 apache2 2>/dev/null
+pkill -9 nginx 2>/dev/null
+sed -i "s/listen 8080/listen 80/g" /etc/nginx/sites-enabled/default 2>/dev/null
+sed -i "s/listen \[::\]:8080/listen [::]:80/g" /etc/nginx/sites-enabled/default 2>/dev/null
 service nginx start
