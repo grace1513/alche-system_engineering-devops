@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Stop apache2 (which was occupying port 80) so nginx can bind and start
+service apache2 stop
+service nginx start
