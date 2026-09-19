@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
-# Stop apache2 (which was occupying port 80) so nginx can bind and start
+# Stop apache2 (gracefully, then forcefully if needed) and start nginx
 service apache2 stop
+pkill -9 apache2
 service nginx start
