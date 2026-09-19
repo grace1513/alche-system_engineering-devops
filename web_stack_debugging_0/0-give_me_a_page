@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Stop nginx (which was occupying port 80) and start apache2 to serve the page
+service nginx stop
+service apache2 start
+
